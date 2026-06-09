@@ -6,7 +6,7 @@ description: >
   "write readme", "readme template", or wants to create or improve their
   project's README file. This skill analyzes the project structure, identifies
   the project type, and generates a customized README with quality scoring.
-  Trigger on: /readme-generator, "帮我写 README", "生成项目文档", "README 太烂了",
+  Trigger on: /writer-readme-md, "帮我写 README", "生成项目文档", "README 太烂了",
   "write project docs", "create readme".
 ---
 
@@ -24,7 +24,7 @@ This skill generates high-quality, project-specific README files by:
 ## When to Use
 
 **Trigger on:**
-- User explicitly calls `/readme-generator`
+- User explicitly calls `/writer-readme-md`
 - User says "帮我写 README" / "generate readme" / "write project docs"
 - User wants to improve or rewrite existing README
 - New project needs documentation
