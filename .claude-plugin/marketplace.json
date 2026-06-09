@@ -1,0 +1,22 @@
+{
+  "name": "js-skills",
+  "owner": {
+    "name": "Sunss"
+  },
+  "metadata": {
+    "description": "Custom skills collection for Claude Code",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "context-file-writer",
+      "source": "./plugins/context-file-writer",
+      "description": "Create and maintain AGENTS.md/CLAUDE.md files for AI agent context"
+    },
+    {
+      "name": "readme-generator",
+      "source": "./plugins/readme-generator",
+      "description": "Generate high-quality README files"
+    }
+  ]
+}
