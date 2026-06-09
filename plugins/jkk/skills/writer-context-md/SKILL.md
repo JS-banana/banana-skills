@@ -1,5 +1,5 @@
 ---
-name: context-file-writer
+name: writer-context-md
 description: Create and maintain high-quality AGENTS.md/CLAUDE.md files for AI agent context. Use when user wants to create, optimize, or update project context files for Claude Code, Codex, Cursor, Copilot, or other AI coding tools.
 ---
 

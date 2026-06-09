@@ -1,5 +1,5 @@
 ---
-name: readme-generator
+name: writer-readme-md
 description: >
   Generate high-quality README files for GitHub projects. Use this skill when
   the user mentions "README", "project documentation", "generate readme",
