@@ -1,11 +1,18 @@
 ---
 name: writer-context-md
-description: Create and maintain high-quality AGENTS.md/CLAUDE.md files for AI agent context. Use when user wants to create, optimize, or update project context files for Claude Code, Codex, Cursor, Copilot, or other AI coding tools.
+description: >
+  Create and maintain high-quality AGENTS.md/CLAUDE.md files for AI agent context.
+  Use this skill when the user wants to create, optimize, or update project context
+  files for Claude Code, Codex, Cursor, Copilot, or other AI coding tools.
+  This skill analyzes the project structure and generates context files following
+  best practices (progressive disclosure, six essential sections, <300 lines).
+  Trigger on: /writer-context-md, "写 AGENTS.md", "优化 CLAUDE.md", "生成上下文文件",
+  "create context file", "update project docs".
 ---
 
 # Writer Context MD
 
-Create and maintain AGENTS.md/CLAUDE.md files based on research data (ETH Zurich, GitHub 2500+ repos).
+Create and maintain high-quality AGENTS.md/CLAUDE.md files for AI agent context.
 
 ## Core Principle
 
