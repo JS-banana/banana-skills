@@ -6,13 +6,41 @@
 
 ---
 
+## Source Roles
+
+Use roles before choosing queries. A rich channel list is not enough; each kept
+record still needs an official or recognized confirmation path.
+
+| Role | What it can prove | Examples | Acceptance rule |
+|------|-------------------|----------|-----------------|
+| Discovery | A possible opportunity exists | AgentDeadlines, broad search, V2EX/Juejin monthly roundups, X/Twitter, Reddit | Follow up before keeping |
+| Platform listing | Reward, deadline, participation format, and platform status | Devpost, lablab.ai, DoraHacks, Tianchi, Kaggle, DataFountain | Can be kept when entry URL and current status are visible |
+| Official confirmation | Rules, registration, reward, deadline, or claim path from the organizer | Vendor event pages, challenge pages, official docs/blogs | Required for high-confidence records |
+| Community signal | Early or local signal that may not be indexed elsewhere | linux.do, V2EX, Reddit, Bilibili, Xiaohongshu, X/Twitter | Treat as lead unless it links to official details |
+| Detail extraction | Page body or structured data for an already found candidate | Jina Reader, curl, Firecrawl, Exa fetch, AgentDeadlines JSON-LD | Verify dates and entry path before scoring |
+| Reminder state | Current status of an already recorded opportunity | Feishu Base views, seen JSONL, official status page | Notify only after rechecking current status |
+
+## Tool Routing
+
+For weekly deep scans, active queries, and social/community sources, run:
+
+```bash
+agent-reach doctor --json
+```
+
+Use the active backend instead of assuming a platform is covered. Current useful
+routes are usually Twitter/X via `twitter`, Reddit/Xiaohongshu/Bilibili via
+`opencli`, V2EX via public API/RSS, Exa via `mcporter`, and web pages via Jina
+Reader. If a backend is unavailable, switch source family rather than marking
+the opportunity absent.
+
 ## Tier A：每日必扫（每次巡检都要覆盖）
 
 ### 🏗️ 直接聚合平台（核心信源，信号密度最高）
 
 | ID | 平台 | URL | 搜索方式 | 提取方式 | 数据质量 | 备注 |
 |----|------|-----|---------|---------|---------|------|
-| `agentdeadlines` | AgentDeadlines | agentdeadlines.com | `web_extract("https://agentdeadlines.com")` | web_extract ✅ + **curl 直连 ✅**（含 JSON-LD 结构化数据） | ⭐⭐⭐⭐⭐ | **AI Agent 专属 deadline 聚合器**（31+ 活动），单页含奖金/截止/格式/赞助商。2026-06-21 实测：一次提取发现 KDD Cup $885K + RAISE €250K + ARC Prize $2M + AWS AI League $50K。**降级模式**：curl 直连获取 198KB HTML，解析 `<script type="application/ld+json">` 获得全部 31 条结构化事件数据（name/startDate/endDate/url/description），无需 web_extract。详见 SKILL.md "搜索降级策略"。**⚠️ 过期过滤**：31 项中约 1/3 已过期，先按 endDate < today 排除再提取详情。|
+| `agentdeadlines` | AgentDeadlines | agentdeadlines.com | `web_extract("https://agentdeadlines.com")` | web_extract ✅ + **curl 直连 ✅**（含 JSON-LD 结构化数据） | ⭐⭐⭐⭐⭐ | **AI Agent 专属 deadline 聚合器**（31+ 活动），单页含奖金/截止/格式/赞助商。2026-06-21 实测：一次提取发现 KDD Cup $885K + RAISE €250K + ARC Prize $2M + AWS AI League $50K。**降级模式**：curl 直连获取 198KB HTML，解析 `<script type="application/ld+json">` 获得全部 31 条结构化事件数据（name/startDate/endDate/url/description），无需 web_extract。详见 `tool-fallbacks.md`。**⚠️ 过期过滤**：31 项中约 1/3 已过期，先按 endDate < today 排除再提取详情。|
 | `devpost` | Devpost | devpost.com/hackathons | `site:devpost.com AI hackathon 2026` | web_extract ✅ | ⭐⭐⭐⭐⭐ | 全球最大 hackathon 平台，含奖金/截止/参赛人数/标签 |
 | `lablab` | lablab.ai | lablab.ai/ai-hackathons | `site:lablab.ai AI hackathon 2026` | web_extract ✅ / curl ❌ Cloudflare JS 挑战（2026-06-26 确认） | ⭐⭐⭐⭐⭐ | AI 专属平台，信号纯净，有 LIVE/Register/Coming Soon 状态。**降级模式**：DDG `site:lablab.ai` 查询结果含活动名+截止日期+描述，信息密度足够做初筛。确认为 Cloudflare JS 挑战页后不再尝试 curl 直连 |
 | `dorahacks` | DoraHacks | dorahacks.io | `site:dorahacks.io AI hackathon 2026` | web_extract ✅（newsletter页） | ⭐⭐⭐⭐ | AI+Web3，`/blog/news/dora-hackathons` 是结构化表格 |
@@ -27,7 +55,7 @@
 |----|------|---------|---------|------|
 | `linuxdo` | linux.do | `site:linux.do AI credits OR 福利 OR 活动 OR 赠金 OR 大赛 OR hackathon` | ⭐⭐⭐⭐⭐ | 中文开发者福利/羊毛/credits 第一信号源，v2.0 实测极佳。**降级模式**：搜索 API 被 CF 拦截，但 `curl linux.do/t/topic/ID.json` 可直接获取帖子内容（Discourse JSON API），配合 DDG `site:linux.do` 搜索发现 topic ID |
 | `v2ex` | V2EX | `site:v2ex.com AI credits hackathon 2026` | ⭐⭐⭐⭐ | 开发者 credits 讨论/赠金，v2.0 实测高。**⚠️ DDG 查询必须用英文关键词**（2026-06-27 实测：`site:v2ex.com AI credits hackathon 2026` 返回 10 条；含中文关键词如"赠金/福利"则返回 0 条）。**🆕 "AI赛事通"(CompeteHub) 月度聚合帖**（2026-06-30 实测）：V2EX 用户 `wuswoo` 每月发布中国区 AI 竞赛汇总（如 `t/1206299` 覆盖 112 场），含竞赛名/奖金/地点/起止日期/类型标签。内容比 DDG 搜索更全面、更结构化。发现路径：DDG `site:v2ex.com AI赛事通 竞赛 汇总 2026`。掘金上同源用户也发布类似汇总 |
-| `twitter_auth` | Twitter/X（认证） | `twitter search "AI hackathon prize 2026" --type latest` | ⭐⭐⭐⭐⭐ | 已配置 cookies，twitter-cli 直连，实时信号最强。**⚠️ 401（cookie过期）和 404（ClientTransaction init failure）两种故障模式**，详见 SKILL.md Pitfalls |
+| `twitter_auth` | Twitter/X（认证） | `twitter search "AI hackathon prize 2026" --type latest` | ⭐⭐⭐⭐⭐ | 已配置 cookies，twitter-cli 直连，实时信号最强。**⚠️ 401（cookie过期）和 404（ClientTransaction init failure）两种故障模式**，详见 `tool-fallbacks.md` |
 | `x_hackathon` | X/Twitter（搜索） | `site:x.com "AI hackathon" OR "agent hackathon" OR "developer challenge" 2026` | ⭐⭐⭐⭐ | web_search 补充，能发现非平台活动 |
 | `x_submissions` | X/Twitter（报名） | `site:x.com submissions open OR registration open AI agent prize 2026` | ⭐⭐⭐⭐ | 发现即将截止和刚开放的活动 |
 | `hf_community` | HuggingFace | `site:huggingface.co hackathon OR competition AI 2026` | ⭐⭐⭐⭐ | ML 社区专属活动（Mistral Hack-a-ton、LeRobot 等）。**⚠️ HF org 页面可能显示已结束活动**：如 Agents-MCP-Hackathon（2025-06）仍出现在 DDG 搜索结果中。curl 提取 HF org 页面时需检查日期（`📅 Date:` 字段），避免将旧活动误判为当前活动。建议在 DDG 查询中加 `2026` 过滤 |
