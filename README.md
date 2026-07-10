@@ -31,14 +31,17 @@ npx skills add JS-banana/banana-skills --skill demand-radar
 
 </details>
 
+安装后无需配置，在 Claude Code 对话中直接描述任务即可自动触发，
+如「帮我写 README」「优化 AGENTS.md」「跑一次需求雷达」。
+
 ---
 
 ## ✨ 技能列表
 
 | 技能 | 功能 |
 |------|------|
-| ai-vendor-campaign-radar | 发现、筛选、提醒并记录 AI/编程活动机会 |
-| demand-radar | 采集、筛选、验证真实用户需求信号，并准备飞书多维表格记录 |
-| r2-asset-publisher | 压缩图片、发布到 Cloudflare R2，并维护 Markdown 图床 URL 与资产台账 |
-| writer-readme-md | 分析项目结构，生成高质量 README |
-| writer-context-md | 创建和优化 AGENTS.md/CLAUDE.md |
+| [ai-vendor-campaign-radar](plugins/banana/skills/ai-vendor-campaign-radar/) | 发现、筛选、提醒并记录 AI/编程活动机会 |
+| [demand-radar](plugins/banana/skills/demand-radar/) | 采集、筛选、验证真实用户需求信号，并准备飞书多维表格记录 |
+| [r2-asset-publisher](plugins/banana/skills/r2-asset-publisher/) | 压缩图片、发布到 Cloudflare R2，并维护 Markdown 图床 URL 与资产台账 |
+| [writer-readme-md](plugins/banana/skills/writer-readme-md/) | 基于项目证据生成/审查 README，含排版、徽章与双语规范 |
+| [writer-context-md](plugins/banana/skills/writer-context-md/) | 创建和审查 AGENTS.md/CLAUDE.md 等 agent 上下文文件 |
