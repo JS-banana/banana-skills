@@ -15,8 +15,6 @@ or register for, with a concrete reward and a direct link.
 
 ## Load Rules
 
-- For terminology, read `CONTEXT.md` when changing the skill or resolving
-  ambiguous terms such as candidate, opportunity, source, or reminder.
 - Before any public scan, read `references/source-registry.md`,
   `references/keyword-clusters.md`, `references/tool-fallbacks.md`, and
   `references/agentdeadlines-guide.md`.

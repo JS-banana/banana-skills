@@ -1,4 +1,0 @@
-interface:
-  display_name: "AI Vendor Campaign Radar"
-  short_description: "Find and record AI developer campaign opportunities"
-  default_prompt: "Use $ai-vendor-campaign-radar to scan, screen, and record AI campaign opportunities."

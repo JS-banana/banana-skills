@@ -49,13 +49,6 @@ PLACEHOLDER_PATTERNS = [
     r"Project Name",
 ]
 
-REQUIRED_OPENAI_INTERFACE = [
-    "display_name",
-    "short_description",
-    "default_prompt",
-]
-
-
 def read(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
@@ -83,59 +76,6 @@ def extract_frontmatter(content: str) -> dict[str, str] | None:
     if key:
         data[key] = " ".join(part for part in buffer if part).strip()
     return data
-
-
-def unquote_yaml_value(value: str) -> str:
-    value = value.strip()
-    if len(value) >= 2 and value[0] == value[-1] and value[0] in {"'", '"'}:
-        return value[1:-1]
-    return value
-
-
-def parse_simple_yaml_sections(content: str) -> dict[str, dict[str, str]]:
-    sections: dict[str, dict[str, str]] = {}
-    current: str | None = None
-    for raw_line in content.splitlines():
-        if not raw_line.strip() or raw_line.lstrip().startswith("#"):
-            continue
-        section = re.match(r"^([A-Za-z0-9_-]+):\s*$", raw_line)
-        if section:
-            current = section.group(1)
-            sections.setdefault(current, {})
-            continue
-        item = re.match(r"^\s+([A-Za-z0-9_-]+):\s*(.+?)\s*$", raw_line)
-        if current and item:
-            sections[current][item.group(1)] = unquote_yaml_value(item.group(2))
-    return sections
-
-
-def validate_openai_yaml(skill_dir: Path) -> list[str]:
-    errors: list[str] = []
-    openai_yaml = skill_dir / "agents/openai.yaml"
-    if not openai_yaml.exists():
-        return ["missing agents/openai.yaml"]
-
-    sections = parse_simple_yaml_sections(read(openai_yaml))
-    if "openai" in sections:
-        errors.append("agents/openai.yaml must use top-level interface:, not openai:")
-    interface = sections.get("interface")
-    if interface is None:
-        errors.append("agents/openai.yaml missing top-level interface:")
-        return errors
-
-    for key in REQUIRED_OPENAI_INTERFACE:
-        if not interface.get(key):
-            errors.append(f"agents/openai.yaml missing interface.{key}")
-
-    short_description = interface.get("short_description", "")
-    if short_description and not (25 <= len(short_description) <= 64):
-        errors.append("agents/openai.yaml interface.short_description must be 25-64 characters")
-
-    default_prompt = interface.get("default_prompt", "")
-    if default_prompt and "$writer-readme-md" not in default_prompt:
-        errors.append("agents/openai.yaml interface.default_prompt must mention $writer-readme-md")
-
-    return errors
 
 
 def validate_skill(skill_dir: Path) -> list[str]:
@@ -176,8 +116,6 @@ def validate_skill(skill_dir: Path) -> list[str]:
     for rel in FORBIDDEN_SKILL_FILES:
         if (skill_dir / rel).exists():
             errors.append(f"obsolete file still present: {rel}")
-
-    errors.extend(validate_openai_yaml(skill_dir))
 
     return errors
 
