@@ -28,10 +28,16 @@ Create editorial pencil drawings: quiet, spatial, slightly strange, and composed
 
 ## Handwritten text
 
-- Prefer no text when the image already explains itself.
-- Otherwise use 0–4 short labels, or one focal phrase.
-- Place text inside quiet space and integrate it with the visual balance.
-- Keep letterforms casual and restrained, not brush calligraphy, bubbly lettering or a perfect digital UI font.
+Treat visible words as **hand-lettered annotations**, not captions pasted onto a finished image.
+
+- **Editorial scene:** use no text, 1–2 short labels, or one focal line.
+- **Annotated scene:** use one focal question or claim plus 2–5 short labels.
+- **Explainer sketch:** use 3–6 entity or action labels; add one focal line only when it materially frames the relationship.
+- Keep a focal line concise, usually at most about 18 Chinese characters or 10 English words. Keep labels at 2–6 Chinese characters or 1–3 English words.
+- Make the focal line roughly 1.8–2.5 times the label height and place it in quiet space as part of the composition.
+- Preserve one writer across Chinese and English: mildly uneven baseline, nonuniform character boxes, natural spacing, visible pressure changes and occasional dry edges.
+- Keep every string readable. The target is an informal pencil or nearly dry felt-tip note, not polished kaishu, formal brush calligraphy, bubbly lettering or a handwriting font.
+- If the requested text exceeds these budgets, split the idea or route exact dense information to a diagram or layout tool.
 
 ## Hard bans
 
@@ -39,4 +45,5 @@ Create editorial pencil drawings: quiet, spatial, slightly strange, and composed
 - No PPT title bar, formal flowchart, dashboard, fake UI or dense legend.
 - No glossy 3D, gradient mesh, neon glow, vector stock art or photoreal texture.
 - No generic robots, glowing brains, rockets, puzzle pieces or lightbulb metaphors unless the user's subject literally requires them.
+- No font-like regular baseline, identical character boxes or mechanically even spacing when text appears.
 - No copied character, watermark, scene, composition or distinctive prop from a reference image.

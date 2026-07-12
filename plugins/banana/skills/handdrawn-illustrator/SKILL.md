@@ -1,7 +1,7 @@
 ---
 name: handdrawn-illustrator
 description: >-
-  Design and generate coherent pencil-drawn editorial illustrations from Chinese articles or single ideas. Use when the user asks for 文章配图、正文插图、手绘配图、概念图、用图解释一个观点、聊天辅助表达、配图建议 or an illustration shot list. Route articles through a 3–5 image plan before generation and render clear single concepts directly. Do not use for photo editing, logos, full poster/card/PPT layouts, or exact technical diagrams.
+  Design and generate coherent pencil-drawn editorial, annotated and simple explanatory illustrations from Chinese articles or single ideas. Use when the user asks for 文章配图、手绘批注图、概念图、技术概念解释、简单流程图、聊天辅助表达 or an illustration shot list. Route articles through a 3–5 image plan before generation and render clear single concepts directly. Do not use for photo editing, logos, full poster/card/PPT layouts, or exact technical diagrams with strict topology.
 ---
 
 # Handdrawn Illustrator
@@ -14,6 +14,7 @@ Resolve `SKILL_DIR` to the installed directory containing this `SKILL.md`; use a
 
 - Before choosing a scene, read `references/composition.md`.
 - Before every generation, read `references/visual-language.md` and `references/prompting.md` in full.
+- When any visible text appears, use `assets/lettering-board.png` as a lettering reference.
 - When the traveler appears, also read `references/character.md` and use `assets/character-sheet.png` as a reference.
 - Before delivery, read `references/quality-bar.md` and apply every hard gate.
 
@@ -29,7 +30,7 @@ Complete this step only when the thesis, destination, ratio and character decisi
 
 ## 2. Design one connected composition
 
-Choose exactly one register: editorial scene or explainer sketch. If the subject is visually specific or unfamiliar, gather trustworthy factual references first and extract only stable visual cues.
+Choose exactly one register: editorial scene, annotated scene or explainer sketch. If the subject is visually specific or unfamiliar, gather trustworthy factual references first and extract only stable visual cues.
 
 Describe one shared world: ground or spatial frame, viewpoint, focal action, scale relationship, negative space and reading direction. Do not assemble independent symbols into a collage.
 
@@ -40,8 +41,9 @@ Complete this step only when the composition can be described as one caught scen
 Follow `references/prompting.md`. Use the built-in image generation tool; do not add a provider layer.
 
 - Pass `assets/style-board.png` as Image 1, a style reference only.
-- When the traveler is present, pass `assets/character-sheet.png` as Image 2 and preserve its invariants.
-- Quote exact in-image text. Use 0–4 labels of 2–5 Chinese characters, or one focal phrase up to about 12 characters.
+- When text appears, pass `assets/lettering-board.png` as the next reference and follow its hierarchy and hand rhythm without copying its words or objects.
+- When the traveler is present, pass `assets/character-sheet.png` as the next reference and preserve its invariants.
+- Quote every in-image string and follow the register-specific text budget in `references/visual-language.md`.
 - Generate article images separately, never as a contact sheet.
 
 Complete this step when the output exists at the requested ratio and the final prompt is recorded.
@@ -51,8 +53,9 @@ Complete this step when the output exists at the requested ratio and the final p
 View every output and apply `references/quality-bar.md`.
 
 - Fix one failure at a time while restating all invariants.
+- When text is correct but looks typeset, repair only its lettering against `assets/lettering-board.png`; do not use the overlay script for a style failure.
 - For wrong text, make one text-only repair. If it still fails, regenerate the same scene with clean blank label zones.
-- Overlay exact labels only after two text failures:
+- After two text failures, read `references/text-overlay.md`, then overlay exact labels only if its requirements are available:
 
 ```bash
 python3 "$SKILL_DIR/scripts/overlay_labels.py" input.png output.png labels.json

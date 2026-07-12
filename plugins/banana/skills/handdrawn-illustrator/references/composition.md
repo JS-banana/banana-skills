@@ -19,7 +19,7 @@ Use 3–5 entries by default:
 ```yaml
 - placement: "after <section or sentence>"
   thesis: "one sentence"
-  register: "editorial-scene | explainer-sketch"
+  register: "editorial-scene | annotated-scene | explainer-sketch"
   composition: "viewpoint, connected scene, focal action, scale"
   character_role: "none | exact load-bearing action"
   canvas: "paper | charcoal"
@@ -33,9 +33,13 @@ Use by default for judgments, emotions, states and metaphors. Capture one moment
 
 Strong moves include carrying an impossible weight, opening a door too large for the traveler, repairing a broken bridge, following a line through a cavern, or steering an oversized mechanism. Re-invent the physical action for the current thesis; do not treat this list as reusable compositions.
 
-## Register 2: explainer sketch
+## Register 2: annotated scene
 
-Use when the relationship itself is the thesis. Limit the scene to 3–5 physical objects or stages. Express connection through paths, pipes, ropes, tracks, doors, balance or shared terrain rather than formal boxes and arrows.
+Use when the author's voice, a question or object naming carries part of the meaning. Build one shared scene, reserve quiet space for one focal handwritten line, and attach 2–5 short labels directly to their objects. Text and drawing must share hierarchy; do not add a detached title bar or legend.
+
+## Register 3: explainer sketch
+
+Use when the relationship itself is the thesis. Limit the scene to 3–5 physical objects or stages and 3–6 exact labels. Express connection through paths, pipes, ropes, tracks, doors, balance or shared terrain rather than formal boxes and arrows. Use short action labels on the path only when direction would otherwise be ambiguous.
 
 If exact topology, editable geometry, many nodes or numerical precision is required, stop and recommend a diagram tool.
 

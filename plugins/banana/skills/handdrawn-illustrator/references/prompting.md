@@ -11,7 +11,8 @@ Thesis: This image must communicate: <one sentence>.
 
 Input images:
 Image 1 is the canonical style reference. Use its graphite line, selective hatching, spatial calm, scale tension and warm accent; do not copy its scene.
-Image 2 is the canonical character sheet. Preserve the traveler identity while changing only pose and action. <omit when absent>
+Image <N> is the canonical lettering reference. Preserve its hand rhythm, hierarchy, pressure changes and bilingual character; do not copy its words or objects. <include whenever text appears>
+Image <N> is the canonical character sheet. Preserve the traveler identity while changing only pose and action. <omit when absent>
 
 Canvas and framing:
 <paper or charcoal>, <viewpoint>, asymmetrical balance, at least one third quiet space, full subject visible, generous safe margins.
@@ -25,11 +26,14 @@ Character:
 Line and color:
 Fine graphite contours, slight pressure variation, selective crosshatching, one ochre/pencil-yellow accent only. No other color family.
 
-Exact text:
-Render only these handwritten Chinese strings, verbatim and once each: "<label>". <or: No text anywhere.>
+Hand-lettered text:
+Text role: <none | focal line | annotated scene | explainer labels>.
+Focal line: "<exact sentence>". <omit when absent>
+Labels: "<exact label 1>", "<exact label 2>". <omit when absent>
+Render every listed string verbatim and once. Follow the lettering reference: one human writer, mildly uneven baseline, varied character boxes and spacing, visible pressure changes, occasional dry edges. Keep the focal line 1.8–2.5 times the label height. <or: No text anywhere.>
 
 Invariants:
-One thesis, one connected scene, shared perspective and line language. No collage, cards, PPT, formal diagram, fake UI, extra title, English, watermark, copied composition or additional text.
+One thesis, one connected scene, shared perspective and line language. No collage, cards, PPT, formal diagram, fake UI, extra title, unrequested English, watermark, copied composition or additional text.
 ```
 
 Do not place field names, style instructions, color names or hex values inside the image.
@@ -37,7 +41,13 @@ Do not place field names, style instructions, color names or hex values inside t
 ## Text-only repair
 
 ```text
-Keep the composition, objects, character, viewpoint, line work, hatching, canvas and accent unchanged. Change only the handwritten text. Render exactly and once: "<label 1>", "<label 2>". Remove every other character or word. Keep the labels in the existing quiet areas and preserve all other pixels as closely as possible.
+Keep the composition, objects, character, viewpoint, line work, hatching, canvas and accent unchanged. Change only the hand-lettered text. Render exactly and once: "<label 1>", "<label 2>". Remove every other character or word. Match the canonical lettering board: one writer, natural baseline variation, nonuniform character boxes, visible pressure changes and no font-like regularity. Keep the text in the existing quiet areas and preserve all other pixels as closely as possible.
+```
+
+## Lettering-style repair
+
+```text
+Keep every word, object, character, position, viewpoint, line, color and crop unchanged. Change only the letterforms. Preserve the exact strings, but make them feel written directly onto the paper by the canonical writer: mildly uneven baseline, varied character width and spacing, visible pressure changes and occasional dry edges. Remove typeset regularity without reducing legibility.
 ```
 
 ## Blank-zone regeneration
